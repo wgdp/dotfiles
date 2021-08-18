@@ -1,2 +1,4 @@
 .ssh/
-.aws
+.aws/
+
+.DS_Store
