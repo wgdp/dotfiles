@@ -21,4 +21,7 @@ fi
 
 # Install fisher
 fish -c "eval $FISHER_INSTALL_CMD && fisher install $FISHER_PLUGINS"
-exec fish
+
+# Change default shell
+echo /usr/local/bin/fish | sudo tee -a /etc/shells || tee -a /etc/shells
+sudo chsh -s /usr/local/bin/fish || chsh -s /user/local/bin/fish
