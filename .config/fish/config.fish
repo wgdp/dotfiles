@@ -1,6 +1,7 @@
 if status is-interactive
-    # Commands to run in interactive sessions can go here
+
 end
+
 
 # gcloud
 if test -f '~/Downloads/google-cloud-sdk/path.zsh.inc'
@@ -20,3 +21,7 @@ set -x PATH "/opt/homebrew/opt/openssl@1.1/bin:$PATH"
 set -x PYENV_ROOT "$HOME/.pyenv"
 set -x PATH $PYENV_ROOT/bin $PATH
 pyenv init - | source
+
+
+# rust
+set -x PATH "$HOME/.cargo/bin" $PATH

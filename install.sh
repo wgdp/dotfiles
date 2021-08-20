@@ -14,7 +14,8 @@ done
 
 # fish
 mkdir -p "$HOME/.config/fish/"
-ln -sfn "$PWD/.config/fish" "$HOME/.config/fish/"
+ln -sfn "$PWD/.config/fish/config.fish" "$HOME/.config/fish/config.fish"
+ln -sfn "$PWD/.config/fish/fish_plugins" "$HOME/.config/fish/fish_plugins"
 
 
 # Install fish shell
