@@ -1,5 +1,21 @@
 #!/bin/bash
 
+set -eux
+
+for file in .??*
+do
+    [[ "$file" == ".git" ]] && continue
+    [[ "$file" == ".DS_Store" ]] && continue
+    [[ "$file" == ".gitignore" ]] && continue
+    [[ "$file" == ".config" ]] && continue
+    echo $file
+    ln -sfn $file ~/$file
+done
+
+# fish
+mkdir -p "$HOME/.config/fish/"
+ln -sfn "$PWD/.config/fish" "$HOME/.config/fish/"
+
 
 # Install fish shell
 ./install_fish.sh
@@ -13,13 +29,3 @@ elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
     echo "\n" | sudo add-apt-repository ppa:neovim-ppa/unstable || echo "\n" | add-apt-repository ppa:neovim-ppa/unstable
     sudo apt install -y neovim || apt install -y neovim
 fi
-
-
-for f in .??*
-do
-    [[ "$f" == ".git" ]] && continue
-    [[ "$f" == ".DS_Store" ]] && continue
-    [[ "$f" == ".gitignore" ]] && continue
-
-    ln -s $f ~/$f
-done
