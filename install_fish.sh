@@ -3,8 +3,6 @@
 FISH_REPO_NAME="ppa:fish-shell/release-3"
 FISHER_INSTALL_CMD="curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish"
 
-FISHER_PLUGINS="pure-fish/pure jethrokuan/z"
-
 
 # Mac
 if [ "$(uname)" == 'Darwin' ]; then
@@ -20,7 +18,12 @@ elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
 fi
 
 # Install fisher
-fish -c "eval $FISHER_INSTALL_CMD && fisher install $FISHER_PLUGINS"
+fish -c "curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish"
+cat $HOME/dotfiles/.config/fish/fish_plugins | while read line
+do
+    fish -c "fisher install $line"
+done
+
 
 # Change default shell
 echo /usr/local/bin/fish | sudo tee -a /etc/shells || echo /usr/local/bin/fish | tee -a /etc/shells
