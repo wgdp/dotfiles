@@ -1,0 +1,47 @@
+shell:
+  program: /opt/homebrew/bin/fish
+# args:
+# テーマ
+colors:
+  primary:
+    background: '0x1e282d'
+    foreground: '0xc4c7d1'
+
+  normal:
+    black:   '0x666666'
+    red:     '0xeb606b'
+    green:   '0xc3e88d'
+    yellow:  '0xf7eb95'
+    blue:    '0x80cbc4'
+    magenta: '0xff2f90'
+    cyan:    '0xaeddff'
+    white:   '0xffffff'
+
+  bright:
+    black:   '0xa1a1a1'
+    red:     '0xeb606b'
+    green:   '0xc3e88d'
+    yellow:  '0xf7eb95'
+    blue:    '0x7dc6bf'
+    magenta: '0x6c71c4'
+    cyan:    '0x35434d'
+    white:   '0xffffff'
+# フォント
+font:
+  size: 14  # フォントサイズ
+  normal:
+    family: 'Fira Code'
+    style: Regular
+  bold:
+    family: 'Fira Code'
+    style: Bold
+  italic:
+    family: 'Fira Code'
+    style: Italic
+  bold_italic:
+    family: 'Fira Code'
+    style: Bold Italic
+# window:
+  # decorations: full         # ボーダーとタイトルバーを表示する
+  # startup_mode: Fullscreen  # フルスクリーンで起動する
+  # background_opacity: 0.95    # 背景を透過させる
