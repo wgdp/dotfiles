@@ -36,12 +36,23 @@ font:
     family: 'Fira Code'
     style: Bold
   italic:
-    family: 'Fira Code'
+    family: 'Menlo'
     style: Italic
   bold_italic:
-    family: 'Fira Code'
+    family: 'Menlo'
     style: Bold Italic
 # window:
   # decorations: full         # ボーダーとタイトルバーを表示する
   # startup_mode: Fullscreen  # フルスクリーンで起動する
   # background_opacity: 0.95    # 背景を透過させる
+gui:
+  theme:
+    lightTheme: false
+    activeBorderColor:
+      - white
+      - bold
+    inactiveBorderColor:
+      - white
+    selectedLineBgColor:
+      - reverse
+      - blue
