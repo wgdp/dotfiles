@@ -30,3 +30,6 @@ pyenv init - | source
 
 # rust
 set -x PATH "$HOME/.cargo/bin" $PATH
+
+# start starship!!
+starship init fish | source

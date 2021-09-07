@@ -3,18 +3,22 @@
 FISH_REPO_NAME="ppa:fish-shell/release-3"
 FISHER_INSTALL_CMD="curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish"
 
+# install fish
+git clone https://github.com/fish-shell/fish-shell.git
+cd fish-shell; cmake .; make; sudo make install
+cd .. && rm -rf fish-shell
 
 # Mac
 if [ "$(uname)" == 'Darwin' ]; then
-    brew install fish
+#     brew install fish
     brew install curl
 # Linux
 elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
     # Linux || Docker
     sudo apt install -y software-properties-common curl || apt install -y software-properties-common curl
-    echo "\n" | sudo apt-add-repository $FISH_REPO_NAME || echo "\n" | apt-add-repository $FISH_REPO_NAME
-    sudo apt update || apt update
-    sudo apt install -y fish || apt install -y fish
+#    echo "\n" | sudo apt-add-repository $FISH_REPO_NAME || echo "\n" | apt-add-repository $FISH_REPO_NAME
+#    sudo apt update || apt update
+#    sudo apt install -y fish || apt install -y fish
 fi
 
 # Install fisher
