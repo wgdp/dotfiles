@@ -30,3 +30,6 @@ elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
     echo "\n" | sudo add-apt-repository ppa:neovim-ppa/unstable || echo "\n" | add-apt-repository ppa:neovim-ppa/unstable
     sudo apt install -y neovim || apt install -y neovim
 fi
+
+# Install starship
+sh -c "$(curl -fsSL https://starship.rs/install.sh)"
