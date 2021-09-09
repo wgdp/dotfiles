@@ -13,8 +13,8 @@ if test -f '~/Downloads/google-cloud-sdk/completion.zsh.inc'
 end
 
 # /usr/local/bin /usr/bin
-set -x PATH /usr/local/bin
-set -x PATH /usr/bin
+set -x PATH /usr/local/bin $PATH
+set -x PATH /usr/bin $PATH
 
 # homebrew
 set -x PATH /opt/homebrew/bin $PATH
