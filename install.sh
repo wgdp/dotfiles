@@ -17,6 +17,8 @@ for dir in "$PWD/.config/"*
 do
     bn="$(basename "$dir")"
     [[ "$dir" == "fish" ]] && continue
+
+    ln -sfn "$dir" "~/.config"
 done
     
 
