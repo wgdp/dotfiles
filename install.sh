@@ -19,7 +19,7 @@ do
     bn="$(basename "$dir")"
     [[ "$bn" == "fish" ]] && continue
 
-    ln -sfn "$dir" "~/.config/$bn"
+    ln -sfn "$dir" "~/.config/"
     echo "$bn のリンクが作成されました。"
 done
     
