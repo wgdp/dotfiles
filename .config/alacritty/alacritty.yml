@@ -54,10 +54,10 @@ colors:
 font:
   size: 14  # フォントサイズ
   normal:
-    family: 'Fira Code'
+    family: 'HackGen35Nerd Console'
     style: Regular
   bold:
-    family: 'Fira Code'
+    family: 'HackGen35Nerd Console'
     style: Bold
   italic:
     family: 'Menlo'
