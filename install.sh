@@ -10,16 +10,17 @@ do
     [[ "$file" == ".gitignore" ]] && continue
     [[ "$file" == ".config" ]] && continue
     ln -sfn $file ~/$file
-    echo "🔗 $file のリンクが作成されました。"
+    echo " $file のリンクが作成されました。"
 done
 
 mkdir -p "~/.config"
 for dir in "$PWD/.config/"*
 do
     bn="$(basename "$dir")"
-    [[ "bn" == "fish" ]] && continue
+    [[ "$bn" == "fish" ]] && continue
+
     ln -sfn "$dir" "~/.config/"
-    echo "🔗 $bn のリンクが作成されました。"
+    echo "$bn のリンクが作成されました。"
 done
     
 
