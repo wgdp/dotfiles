@@ -13,7 +13,7 @@ do
     echo " $file のリンクが作成されました。"
 done
 
-mkdir -p "~/.config"
+mkdir -p ~/.config
 for dir in "$PWD/.config/"*
 do
     bn="$(basename "$dir")"
