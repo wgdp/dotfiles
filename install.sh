@@ -2,23 +2,24 @@
 
 set -eux
 
+
 for file in .??*
 do
     [[ "$file" == ".git" ]] && continue
     [[ "$file" == ".DS_Store" ]] && continue
     [[ "$file" == ".gitignore" ]] && continue
-    [[ "$file" == ".config" ]] %% continue
-    echo $file
+    [[ "$file" == ".config" ]] && continue
     ln -sfn $file ~/$file
+    echo "🔗 $file のリンクが作成されました。"
 done
 
 mkdir -p "~/.config"
 for dir in "$PWD/.config/"*
 do
     bn="$(basename "$dir")"
-    [[ "$dir" == "fish" ]] && continue
-
+    [[ "bn" == "fish" ]] && continue
     ln -sfn "$dir" "~/.config/"
+    echo "🔗 $bn のリンクが作成されました。"
 done
     
 
