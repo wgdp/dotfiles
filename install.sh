@@ -18,7 +18,7 @@ do
     bn="$(basename "$dir")"
     [[ "$dir" == "fish" ]] && continue
 
-    ln -sfn "$dir" "~/.config"
+    ln -sfn "$dir" "~/.config/"
 done
     
 
