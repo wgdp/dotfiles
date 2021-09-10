@@ -12,6 +12,15 @@ if test -f '~/Downloads/google-cloud-sdk/completion.zsh.inc'
     . '~/Downloads/google-cloud-sdk/completion.zsh.inc'
 end
 
+# alias
+alias d=docker
+alias dc=docker-compose
+alias gp='git pull'
+alias fhcnf='nvim ~/.config/fish/config.fish'
+alias lg=lazygit
+alias v=nvim
+alias g=git
+
 # /usr/local/bin /usr/bin
 set -x PATH /usr/local/bin $PATH
 set -x PATH /usr/bin $PATH
