@@ -25,8 +25,9 @@ done
     
 
 # fish
-mkdir -p "~/.config/fish"
+mkdir -p ~/.config/fish
 ln -sfn "~/dotfiles/.config/fish/config.fish" "~/.config/config.fish"
+ln -sfn "~/dotfiles/.config/fish/fish_plugin" "~/.config/fish_plugin"
 
 
 # Install fish shell
