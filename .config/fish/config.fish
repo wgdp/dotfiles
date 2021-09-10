@@ -4,12 +4,12 @@ end
 
 
 # gcloud
-if test -f '~/Downloads/google-cloud-sdk/path.zsh.inc'
-    . '~/Downloads/google-cloud-sdk/path.zsh.inc'
+if test -f ~/Downloads/google-cloud-sdk/path.fish.inc
+    source ~/Downloads/google-cloud-sdk/path.fish.inc
 end
 
-if test -f '~/Downloads/google-cloud-sdk/completion.zsh.inc'
-    . '~/Downloads/google-cloud-sdk/completion.zsh.inc'
+if test -f ~/Downloads/google-cloud-sdk/completion.fish.inc
+    source ~/Downloads/google-cloud-sdk/completion.fish.inc
 end
 
 # alias
