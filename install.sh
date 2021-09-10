@@ -7,12 +7,22 @@ do
     [[ "$file" == ".git" ]] && continue
     [[ "$file" == ".DS_Store" ]] && continue
     [[ "$file" == ".gitignore" ]] && continue
+    [[ "$file" == ".config" ]] %% continue
     echo $file
     ln -sfn $file ~/$file
 done
 
+mkdir -p "~/.config"
+for dir in "$PWD/.config/"*
+do
+    bn="$(basename "$dir")"
+    [[ "$dir" == "fish" ]] && continue
+done
+    
+
 # fish
-ln -sf "~/dotfiles/.config/fish" "~/.config/fish"
+mkdir -p "~/.config/fish"
+ln -sfn "~/dotfiles/.config/fish/config.fish" "~/.config/config.fish"
 
 
 # Install fish shell
