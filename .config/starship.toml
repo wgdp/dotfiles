@@ -3,5 +3,30 @@ add_newline = true
 scan_timeout = 10
 
 [character]
-success_symbol = "[▶](bold green)"
-error_symbol = "[▶](bold red)"
+success_symbol = "[>](bold green)"
+error_symbol = "[>](bold red)"
+
+[directory]
+truncate_to_repo = false
+
+[git_status]
+conflicted = "💥"
+ahead = "🏎💨"
+behind = "😰"
+diverged = "😵"
+untracked = "🌚‍"
+stashed = "📦"
+modified = "📝"
+staged = '🔦'
+renamed = "🏷"
+deleted = "🗑"
+
+[[battery.display]]
+threshold = 100
+style = "bold blue"
+
+[battery]
+unknown_symbol = "🤪"
+
+[gcloud]
+format = 'on [$symbol$project]($style) '
