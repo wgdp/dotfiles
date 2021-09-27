@@ -22,7 +22,7 @@ alias v=nvim
 alias g=git
 
 # exa
-if command -v exa
+if command -sq exa
   alias e='exa --icons --git'
   alias l=e
   alias ls=e
