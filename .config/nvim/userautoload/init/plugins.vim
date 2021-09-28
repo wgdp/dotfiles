@@ -11,4 +11,8 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 " Git Blame
 Plug 'APZelos/blamer.nvim'
+" 差分表示
+Plug 'airblade/vim-gitgutter'
+" ファイラー
+Plug 'lambdalisue/fern.vim'
 call plug#end()
