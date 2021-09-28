@@ -39,7 +39,7 @@ if [ "$(uname)" == 'Darwin' ]; then
     brew install neovim
 elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
     # vscode-neovimにはneovim0.5以上が必要なため
-    echo "\n" | sudo add-apt-repository ppa:neovim-ppa/unstable || echo "\n" | add-apt-repository ppa:neovim-ppa/unstable
+    echo "\n" | sudo add-apt-repository ppa:neovim-ppa/stable || echo "\n" | add-apt-repository ppa:neovim-ppa/stable
     sudo apt install -y neovim || apt install -y neovim
 fi
 
