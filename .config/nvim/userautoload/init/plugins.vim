@@ -15,4 +15,10 @@ Plug 'APZelos/blamer.nvim'
 Plug 'airblade/vim-gitgutter'
 " ファイラー
 Plug 'lambdalisue/fern.vim'
+" ステータスライン
+Plug 'itchyny/lightline.vim'
+" Zen Mode!!
+Plug 'junegunn/goyo.vim'
+" Nim
+Plug 'alaviss/nim.nvim'
 call plug#end()

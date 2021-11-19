@@ -12,14 +12,15 @@ set clipboard=unnamedplus
 inoremap <silent> jj <ESC>
 " 行番号表示
 set number
-" スベースを使う
-set expandtab
-" スペースの数
-set shiftwidth=4
 " 文字コード
 set encoding=utf-8
 " ハイライト
 set cursorline
+" スペルチェック
+set spell
+set spelllang=en,cjk
+" 折り返さない
+set nowrap
 
 " ステータスバー
 " ファイル名表示
@@ -40,3 +41,17 @@ set statusline+=[ENC=%{&fileencoding}]
 set statusline+=[LOW=%l/%L]
 " ステータスラインを常に表示(0:表示しない、1:2つ以上ウィンドウがある時だけ表示)
 set laststatus=2
+
+" インデント
+" 改行時に前のインデントを計測
+set autoindent
+" 次のインデントを自動調節
+set smartindent
+" 高度な自動インデント
+set smarttab
+" スベースを使う
+set expandtab
+" Tab使用時のスペースの数
+set tabstop=4
+" スペースの数
+set shiftwidth=4
