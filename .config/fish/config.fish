@@ -50,6 +50,8 @@ set -x PATH "$HOME/.cargo/bin" $PATH
 
 # nim
 set -x PATH "$HOME/.nimble/bin" $PATH
+# GitHub CLI補完用
+eval (gh completion -s fish| source)
 
 # start starship!!
 starship init fish | source
