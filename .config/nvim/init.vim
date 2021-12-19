@@ -4,6 +4,8 @@ runtime! userautoload/plugins/*.vim
 " カラースキーム
 syntax enable
 colorscheme nord
+" カラースキーム有効化
+set termguicolors
 " コメントの色が気に入らないので変更
 hi Comment ctermfg=gray
 " クリップボードにコピー
