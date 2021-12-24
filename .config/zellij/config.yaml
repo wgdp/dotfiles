@@ -5,6 +5,7 @@
 # `zellij setup --check`
 # It should show current config locations and features that are enabled.
 
+# nord theme
 themes:
   default:
     fg: [216,222,233]
