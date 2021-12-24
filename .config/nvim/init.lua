@@ -3,6 +3,8 @@ require'plugins'
 vim.cmd('runtime! userautoload/init/*.vim')
 vim.cmd('runtime! userautoload/plugins/*.vim')
 
+require('modules/treesitter')
+
 -- カラースキーム
 require('nightfox').load('nightfox')
 vim.o.termguicolors = true
