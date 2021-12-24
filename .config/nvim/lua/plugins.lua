@@ -2,7 +2,8 @@ vim.cmd[[packadd packer.nvim]]
 
 require'packer'.startup(function()
     use {'wbthomason/packer.nvim', opt = true}
-    
+    use {'nvim-treesitter/nvim-treesitter', run  = ':TSUpdate'}
+
     use {'neoclide/coc.nvim', branch = 'release'}
     use 'APZelos/blamer.nvim'
     use 'airblade/vim-gitgutter'
