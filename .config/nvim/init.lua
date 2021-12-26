@@ -3,10 +3,11 @@ require'plugins'
 vim.cmd('runtime! userautoload/init/*.vim')
 vim.cmd('runtime! userautoload/plugins/*.vim')
 
+-- nvim-treesitter
 require('modules/treesitter')
 
 -- カラースキーム
-require('nightfox').load('nightfox')
+require('nightfox').load('nordfox')
 vim.o.termguicolors = true
 -- コメントの色が気に入らないので変更
 -- pass
