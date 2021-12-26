@@ -10,6 +10,7 @@ require'packer'.startup(function()
     use 'lambdalisue/fern.vim'
     use 'itchyny/lightline.vim'
     use 'cohama/lexima.vim'
+    use 'thinca/vim-quickrun'
     use {
       'nvim-telescope/telescope.nvim',
       requires = { {'nvim-lua/plenary.nvim'} }
