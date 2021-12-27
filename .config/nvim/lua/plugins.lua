@@ -4,6 +4,7 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   packer_bootstrap = vim.fn.system({"git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path})
 end
 
+-- プラグインを追加する際はこの中に書く
 require'packer'.startup(function()
     -- プラグイン管理ツール
     use {'wbthomason/packer.nvim', opt = true}
@@ -105,6 +106,7 @@ end)
 
 vim.opt.completeopt = "menu,menuone,noselect"
 
+-- 補完ツールの設定
 local cmp = require"cmp"
 cmp.setup({
   snippet = {
@@ -125,4 +127,13 @@ cmp.setup({
   }, {
     { name = "buffer" },
   })
+})
+
+-- lspのメッセージ表示設定
+vim.diagnostic.config({
+  virtual_text = false, -- そのまま右側に出てくるのがうざいのでオフにする
+  signs = true,
+  underline = true,
+  update_in_insert = false,
+  severity_sort = false,
 })
