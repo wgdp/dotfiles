@@ -49,27 +49,48 @@ end)
 -- 多分neovim起動時に自動でpacker compileしてくれるやつ
 vim.cmd([[autocmd BufWritePost init.lua source <afile> | PackerCompile]])
 
+-- lsp周りのキー設定
+-- 各操作に関しては以下の公式ドキュメントに書いてあるっぽい
+-- https://neovim.io/doc/user/lsp.html
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 
   local opts = { noremap=true, silent=true }
+  -- カーソル下のシンボルの定義元にジャンプ(公式ドキュメントによると実装してないlspが多いため通常はdefinitionを使うのが良さそう？)
   buf_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+  -- カーソル下のシンボルの定義元にジャンプ
   buf_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+  -- カーソル下の関数とかの詳細を表示する
   buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+  -- 使用先ジャンプ。pyrightでは対応してなくて使えないっぽい。。。
   buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+  -- シグネチャヘルプ
   buf_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+  -- パスを入力して、入力したパス配下のフォルダーをワークスペースに追加する。
+  -- 実行するとパスの入力を求められるやつ。
   buf_set_keymap("n", "<space>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
+  -- パスを入力して、入力したパス配下のフォルダーをワークスペースから削除する。
   buf_set_keymap("n", "<space>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
+  -- 現在のワークスペースをリスト表示する。
   buf_set_keymap("n", "<space>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
+  -- カーソル下の変数の型の定義元にジャンプする。
   buf_set_keymap("n", "<space>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
+  -- カーソルの下のシンボルのすべての参照元ごと名前を変更する。便利そう。
   buf_set_keymap("n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+  -- 現在のカーソル位置で使用可能なコードアクション？を選択できるらしい。使い方は現状不明
   buf_set_keymap("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+  -- カーソル下のシンボルのすべての参照を表示する。
   buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+  -- 行のエラーとか表示
   buf_set_keymap("n", "<space>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", opts)
+  -- 一個前のエラーに移動
   buf_set_keymap("n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
+  -- 一個先のエラーに移動
   buf_set_keymap("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
+  -- エラーメッセージをロケーションリストに追加する
   buf_set_keymap("n", "<space>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
-  buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+  -- フォー待ったー
+  buf_set_keymap("n", "<space>for", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 end
 
 local lsp_installer = require("nvim-lsp-installer")
