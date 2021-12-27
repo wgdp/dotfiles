@@ -5,6 +5,7 @@ vim.cmd('runtime! userautoload/plugins/*.vim')
 
 -- nvim-treesitter
 require('modules/treesitter')
+require('modules/telescope')
 
 -- カラースキーム
 require('nightfox').load('nightfox')
