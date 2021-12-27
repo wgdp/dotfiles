@@ -124,6 +124,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/wgdp/.local/share/nvim/site/pack/packer/start/vim-gitgutter",
     url = "https://github.com/airblade/vim-gitgutter"
+  },
+  ["vim-quickrun"] = {
+    loaded = true,
+    path = "/Users/wgdp/.local/share/nvim/site/pack/packer/start/vim-quickrun",
+    url = "https://github.com/thinca/vim-quickrun"
   }
 }
 
