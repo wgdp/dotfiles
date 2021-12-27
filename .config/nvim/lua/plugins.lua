@@ -137,3 +137,26 @@ vim.diagnostic.config({
   update_in_insert = false,
   severity_sort = false,
 })
+
+local markdown = {
+  lintCommand = "npx --no-install textlint -f unix --stdin --stdin-filename ${INPUT}",
+  lintIgnoreExitCode = true,
+  lintStdin = true,
+  lintFormats = {"%f:%l:%c: %m [%trror/%r]"}
+}
+
+local languages = {
+    markdown = {markdown},
+}
+
+-- textlint用のefm-langserverの設定
+require("lspconfig")["efm"].setup {
+  filetypes = {"markdown"},
+  on_attach = on_attach,
+  init_options = {documentFormatting = true},
+  root_dir = function() return vim.fn.getcwd() end;
+  settings = {
+    rootMarkers = {".textlintrc"},
+    languages = languages
+  }
+}
