@@ -145,18 +145,17 @@ local markdown = {
   lintFormats = {"%f:%l:%c: %m [%trror/%r]"}
 }
 
-local languages = {
+local language_settings = {
     markdown = {markdown},
 }
 
--- textlint用のefm-langserverの設定
+-- textlintをefm-langserver(汎用LSP)で動かす用の設定
+-- efm-langserverを事前にインストールしておく
+-- LspInstallでefmをインストールするとバグるので、brewやgo get等でインストールする。
 require("lspconfig")["efm"].setup {
-  filetypes = {"markdown"},
-  on_attach = on_attach,
-  init_options = {documentFormatting = true},
-  root_dir = function() return vim.fn.getcwd() end;
-  settings = {
-    rootMarkers = {".textlintrc"},
-    languages = languages
-  }
+    -- init_options = {documentFormatting = true},
+    filetypes = {"markdown"},
+    settings = {
+        languages = language_settings
+    }
 }
