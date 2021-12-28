@@ -131,7 +131,7 @@ cmp.setup({
 
 -- lspのメッセージ表示設定
 vim.diagnostic.config({
-  virtual_text = false, -- そのまま右側に出てくるのがうざいのでオフにする
+  virtual_text = true, -- そのまま右側に出てくるのがうざいのでオフにする
   signs = true,
   underline = true,
   update_in_insert = false,
@@ -153,9 +153,9 @@ local language_settings = {
 -- efm-langserverを事前にインストールしておく
 -- LspInstallでefmをインストールするとバグるので、brewやgo get等でインストールする。
 require("lspconfig")["efm"].setup {
-    -- init_options = {documentFormatting = true},
     filetypes = {"markdown"},
     settings = {
+        rootMarkers = {".textlintrc"},
         languages = language_settings
     }
 }
