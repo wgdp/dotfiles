@@ -10,8 +10,6 @@ require'packer'.startup(function()
     use {'wbthomason/packer.nvim', opt = true}
     -- ハイライトなどの強化
     use {'nvim-treesitter/nvim-treesitter', run  = ':TSUpdate'}
-
-    -- use {'neoclide/coc.nvim', branch = 'release'}
     -- Git周り
     use 'APZelos/blamer.nvim'
     -- Gitのコミット履歴を行ごとに表示できるやつ
@@ -43,10 +41,6 @@ require'packer'.startup(function()
     use 'EdenEast/nightfox.nvim'
     -- wakatime
     use 'wakatime/vim-wakatime'
-
-    if packer_bootstrap then
-        require("packer").sync()
-    end
 end)
 
 -- 多分neovim起動時に自動でpacker compileしてくれるやつ
