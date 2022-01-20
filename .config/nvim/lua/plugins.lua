@@ -19,7 +19,7 @@ require'packer'.startup(function()
     -- ファイラ
     use 'lambdalisue/fern.vim'
     -- ステータスラインカスタマイズ
-    use 'itchyny/lightline.vim'
+    -- use 'itchyny/lightline.vim'
     -- カッコ補完等
     use 'cohama/lexima.vim'
     -- vim上からコマンド実行できるやつ
@@ -41,6 +41,8 @@ require'packer'.startup(function()
     use "hrsh7th/vim-vsnip"
     -- テーマ
     use 'EdenEast/nightfox.nvim'
+    -- wakatime
+    use 'wakatime/vim-wakatime'
 
     if packer_bootstrap then
         require("packer").sync()
