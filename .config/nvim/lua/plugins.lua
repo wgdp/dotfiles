@@ -25,7 +25,7 @@ require'packer'.startup(function()
     -- nvim-lsp
     use "neovim/nvim-lspconfig"
     use "williamboman/nvim-lsp-installer"
-    -- 補完 
+    -- 補完
     use "hrsh7th/nvim-cmp"
     use "hrsh7th/cmp-nvim-lsp"
     use "hrsh7th/cmp-vsnip"
@@ -90,14 +90,55 @@ local on_attach = function(client, bufnr)
   buf_set_keymap("n", "<space>for", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 end
 
+-- markdownのlint用。
+local markdown = {
+  lintCommand = "npx --no-install textlint -f unix --stdin --stdin-filename ${INPUT}",
+  lintIgnoreExitCode = true,
+  lintStdin = true,
+  lintFormats = {"%f:%l:%c: %m [%trror/%r]"}
+}
+
+local language_settings = {
+    markdown = {markdown},
+}
+
+-- lsp installer
+-- nvim-lsp-installer経由でインストールする場合は、lspconfigではなこちらにlspの設定書くとcmdとかを自動設定してくれるのでこっちに書く
+local enhance_server_opts = {
+    ["sumneko_lua"] = function(opts)    -- luaのlsp。vimとuseの警告がうるさいので除外している
+        opts.settings = {
+            Lua = {
+                diagnostics = {
+                    globals = {"vim", "use"}
+                }
+            }
+        }
+    end,
+    ["efm"] = function(opts)
+        opts.settings = {
+            filetypes = {"markdown"},
+            settings = {
+                rootMarkers = {".textlintrc"},
+                languages = language_settings
+            }
+        }
+    end
+}
+
+-- nvim-lsp-installerのセットアップ
 local lsp_installer = require("nvim-lsp-installer")
 lsp_installer.on_server_ready(function(server)
     local opts = {}
+    -- キーコンフィグとか前で定義したやつを入れる
     opts.on_attach = on_attach
+
+    if enhance_server_opts[server.name] then
+        enhance_server_opts[server.name](opts)
+    end
+    opts.capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
     server:setup(opts)
     vim.cmd [[ do User LspAttachBuffers ]]
-    opts.capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 end)
 
 vim.opt.completeopt = "menu,menuone,noselect"
@@ -127,31 +168,10 @@ cmp.setup({
 
 -- lspのメッセージ表示設定
 vim.diagnostic.config({
-  virtual_text = true, -- そのまま右側に出てくるのがうざいのでオフにする
+  virtual_text = true,  -- 左側にそのまま出てくるやつ。割とうるさいのでうるさすぎるようならfalseにする。
   signs = true,
   underline = true,
   update_in_insert = false,
   severity_sort = false,
 })
 
-local markdown = {
-  lintCommand = "npx --no-install textlint -f unix --stdin --stdin-filename ${INPUT}",
-  lintIgnoreExitCode = true,
-  lintStdin = true,
-  lintFormats = {"%f:%l:%c: %m [%trror/%r]"}
-}
-
-local language_settings = {
-    markdown = {markdown},
-}
-
--- textlintをefm-langserver(汎用LSP)で動かす用の設定
--- efm-langserverを事前にインストールしておく
--- LspInstallでefmをインストールするとバグるので、brewやgo get等でインストールする。
-require("lspconfig")["efm"].setup {
-    filetypes = {"markdown"},
-    settings = {
-        rootMarkers = {".textlintrc"},
-        languages = language_settings
-    }
-}
