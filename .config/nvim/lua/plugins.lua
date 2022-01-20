@@ -168,7 +168,7 @@ cmp.setup({
 
 -- lspのメッセージ表示設定
 vim.diagnostic.config({
-  virtual_text = true,  -- 左側にそのまま出てくるやつ。割とうるさいのでうるさすぎるようならfalseにする。
+  virtual_text = true,  -- 右側にそのまま出てくるやつ。割とうるさいのでうるさすぎるようならfalseにする。
   signs = true,
   underline = true,
   update_in_insert = false,
