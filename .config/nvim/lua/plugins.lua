@@ -56,7 +56,7 @@ require'packer'.startup(function()
 end)
 
 
--- 多分neovim起動時に自動でpacker compileしてくれるやつ
+-- 自動でpacker compileしてくれるやつ
 vim.cmd([[autocmd BufWritePost init.lua source <afile> | PackerCompile]])
 
 -- lsp周りのキー設定
