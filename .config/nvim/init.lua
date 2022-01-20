@@ -1,17 +1,17 @@
+-- 24bitカラーを有効にする
+-- felineにいる
+vim.o.termguicolors = true
+
+require('nightfox').load('nightfox')
+
 require'plugins'
 
-vim.cmd('runtime! userautoload/init/*.vim')
-vim.cmd('runtime! userautoload/plugins/*.vim')
 
--- nvim-treesitter
 require('modules/treesitter')
 require('modules/telescope')
+require('modules/blamer')
 
 -- カラースキーム
-require('nightfox').load('nightfox')
-vim.o.termguicolors = true
--- コメントの色が気に入らないので変更
--- pass
 
 -- jjでNormalモード
 vim.api.nvim_set_keymap('i', 'jj', '<ESC>', { noremap = true, silent = true })
@@ -31,22 +31,22 @@ vim.o.wrap = false
 
 -- ステータスバー
 -- ファイル名表示
-vim.o.statusline = '%F'
+-- vim.o.statusline = '%F'
 -- 変更チェック表示
-vim.o.statusline = vim.o.statusline..'%m'
--- 読み込み専用かどうか表示
-vim.o.statusline = vim.o.statusline..'%r'
--- ヘルプページなら[HELP]と表示
-vim.o.statusline = vim.o.statusline..'%h'
--- プレビューウィンドウ奈良[Preview]と表示
-vim.o.statusline = vim.o.statusline..'%w'
--- これ以降は右寄せ表示
-vim.o.statusline = vim.o.statusline..'%='
--- ファイルエンコーディング
-vim.o.statusline = vim.o.statusline..'[ENC=%{&fileencoding}]'
--- 現在行数/全行数
-vim.o.statusline = vim.o.statusline..'[LOW=%l/%L]'
--- ステータスラインを常に表示
+-- vim.o.statusline = vim.o.statusline..'%m'
+-- -- 読み込み専用かどうか表示
+-- vim.o.statusline = vim.o.statusline..'%r'
+-- -- ヘルプページなら[HELP]と表示
+-- vim.o.statusline = vim.o.statusline..'%h'
+-- -- プレビューウィンドウ奈良[Preview]と表示
+-- vim.o.statusline = vim.o.statusline..'%w'
+-- -- これ以降は右寄せ表示
+-- vim.o.statusline = vim.o.statusline..'%='
+-- -- ファイルエンコーディング
+-- vim.o.statusline = vim.o.statusline..'[ENC=%{&fileencoding}]'
+-- -- 現在行数/全行数
+-- vim.o.statusline = vim.o.statusline..'[LOW=%l/%L]'
+-- -- ステータスラインを常に表示
 vim.o.laststatus = 2
 
 -- インデント
@@ -62,6 +62,4 @@ vim.o.expandtab = true
 vim.o.tabstop = 4
 -- スペースの数
 vim.o.shiftwidth = 4
-
-
 

@@ -9,7 +9,7 @@ require'packer'.startup(function()
     -- プラグイン管理ツール
     use {'wbthomason/packer.nvim', opt = true}
     -- ハイライトなどの強化
-    use {'nvim-treesitter/nvim-treesitter', run  = ':TSUpdate'}
+    use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
     -- Git周り
     use 'APZelos/blamer.nvim'
     -- Gitのコミット履歴を行ごとに表示できるやつ
@@ -17,7 +17,7 @@ require'packer'.startup(function()
     -- ファイラ
     use 'lambdalisue/fern.vim'
     -- ステータスラインカスタマイズ
-    -- use 'itchyny/lightline.vim'
+    use 'feline-nvim/feline.nvim'
     -- カッコ補完等
     use 'cohama/lexima.vim'
     -- vim上からコマンド実行できるやつ
@@ -38,10 +38,23 @@ require'packer'.startup(function()
     -- スニペット
     use "hrsh7th/vim-vsnip"
     -- テーマ
-    use 'EdenEast/nightfox.nvim'
+    use "EdenEast/nightfox.nvim"
     -- wakatime
-    use 'wakatime/vim-wakatime'
+    use "wakatime/vim-wakatime"
+    -- webアイコン設定用
+    use 'kyazdani42/nvim-web-devicons'
+    -- git周りの表現改善
+    use {
+        'lewis6991/gitsigns.nvim',
+        requires = {
+            'nvim-lua/plenary.nvim'
+        },
+        config = function()
+            require('gitsigns').setup()
+        end
+    }
 end)
+
 
 -- 多分neovim起動時に自動でpacker compileしてくれるやつ
 vim.cmd([[autocmd BufWritePost init.lua source <afile> | PackerCompile]])
@@ -89,6 +102,7 @@ local on_attach = function(client, bufnr)
   -- フォー待ったー
   buf_set_keymap("n", "<space>for", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 end
+
 
 -- markdownのlint用。
 local markdown = {
@@ -175,3 +189,5 @@ vim.diagnostic.config({
   severity_sort = false,
 })
 
+-- ステータスライン(feline)
+require('feline').setup()
