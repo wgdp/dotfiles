@@ -2,46 +2,26 @@
 
 set -eux
 
+# シンボリックリンク
+./link.sh
 
-for file in .??*
-do
-    [[ "$file" == ".git" ]] && continue
-    [[ "$file" == ".DS_Store" ]] && continue
-    [[ "$file" == ".gitignore" ]] && continue
-    [[ "$file" == ".config" ]] && continue
-    ln -sfn $file ~/$file
-    echo " $file のリンクが作成されました。"
-done
+# Install app
+if [ "$(uname)" == 'Darwin' ]; then
+    ./macos/brew.sh
+elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
+    ./debian/apt.sh
+fi
 
-mkdir -p ~/.config
-for dir in "$PWD/.config/"*
-do
-    bn="$(basename "$dir")"
-    [[ "$bn" == "fish" ]] && continue
-
-    ln -sfn "$dir" ~/.config/
-    echo "$bn のリンクが作成されました。"
-done
-    
-
-# fish
-mkdir -p ~/.config/fish/
-ln -sfn ~/dotfiles/.config/fish/config.fish ~/.config/fish/config.fish
-ln -sfn ~/dotfiles/.config/fish/fish_plugins ~/.config/fish/fish_plugins
-
-
-# Install fish shell
+# Install fish
 ./install_fish.sh
 
-
-# Install Neovim
-if [ "$(uname)" == 'Darwin' ]; then
-    brew install neovim
-elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
-    # vscode-neovimにはneovim0.5以上が必要なため
-    echo "\n" | sudo add-apt-repository ppa:neovim-ppa/stable || echo "\n" | add-apt-repository ppa:neovim-ppa/stable
-    sudo apt install -y neovim || apt install -y neovim
-fi
+# Install Rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 # Install starship
 sh -c "$(curl -fsSL https://starship.rs/install.sh)"
+
+# Cargo
+cargo install \
+    cargo-update \
+    zellij

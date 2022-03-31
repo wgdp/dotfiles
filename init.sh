@@ -2,16 +2,21 @@
 
 set -eux
 
-cd /tmp
+DOTFILES_URL = https://github.com/wgdp444/dotfiles
 
-# install go task
-sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
+if [ "$(uname)" == 'Darwin' ]; then
+    brew update
+    brew install git
 
-# install git
-sudo apt update | apt update
-sudo apt install -y git | apt install -y git
+    git clone DOTFILES_URL
+    cd dotfiles/macos
+elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
+    sudo apt update
+    sudo apt install
 
-# clone dotfiles
-git clone https://github.com/wgdp444/dotfiles
-cd dotfiles
+    git clone DOTFILES_URL
+    cd dotfiles/debian
+fi
+
+../link.sh
 ./install.sh
