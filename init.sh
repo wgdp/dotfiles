@@ -2,5 +2,5 @@
 
 set -eux
 
-../link.sh
+./link.sh
 ./install.sh
