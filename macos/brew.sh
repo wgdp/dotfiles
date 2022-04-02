@@ -3,4 +3,6 @@ set -eux
 
 brew install neovim \
     lazygit \
-    python3
+    python3 \
+    pyenv \
+    gh
