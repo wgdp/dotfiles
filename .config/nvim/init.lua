@@ -2,16 +2,14 @@
 -- felineにいる
 vim.o.termguicolors = true
 
-require('nightfox').load('nightfox')
-
 require'plugins'
-
 
 require('modules/treesitter')
 require('modules/telescope')
 require('modules/blamer')
 
 -- カラースキーム
+vim.cmd("colorscheme nightfox")
 
 -- jjでNormalモード
 vim.api.nvim_set_keymap('i', 'jj', '<ESC>', { noremap = true, silent = true })
