@@ -25,6 +25,8 @@ require'packer'.startup(function()
     -- nvim-lsp
     use "neovim/nvim-lspconfig"
     use "williamboman/nvim-lsp-installer"
+    -- スニペット
+    use "hrsh7th/vim-vsnip"
     -- 補完
     use "hrsh7th/nvim-cmp"
     use "hrsh7th/cmp-nvim-lsp"
@@ -35,8 +37,6 @@ require'packer'.startup(function()
       'nvim-telescope/telescope.nvim',
       requires = { {'nvim-lua/plenary.nvim'} }
     }
-    -- スニペット
-    use "hrsh7th/vim-vsnip"
     -- テーマ
     use "EdenEast/nightfox.nvim"
     -- wakatime
