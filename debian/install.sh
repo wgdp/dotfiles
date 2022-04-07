@@ -1,0 +1,2 @@
+./apt.sh
+./other.sh
