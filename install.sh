@@ -28,4 +28,5 @@ cargo install \
 
 # Go
 # デバッガ
-go get github.com/go-delve/delve/cmd/dlv
+go install github.com/go-delve/delve/cmd/dlv@latest
+
