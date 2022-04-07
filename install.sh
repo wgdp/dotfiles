@@ -7,9 +7,9 @@ set -eux
 
 # Install app
 if [ "$(uname)" == 'Darwin' ]; then
-    ./macos/brew.sh
+    ./macos/install.sh
 elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
-    ./debian/apt.sh
+    ./debian/install.sh
 fi
 
 # Install fish
@@ -25,3 +25,7 @@ sh -c "$(curl -fsSL https://starship.rs/install.sh)"
 cargo install \
     cargo-update \
     zellij
+
+# Go
+# デバッガ
+go get github.com/go-delve/delve/cmd/dlv
