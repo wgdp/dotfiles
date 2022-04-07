@@ -40,10 +40,16 @@ set -x LDFLAGS "-L/usr/local/opt/openssl/lib"
 set -x CPPFLAGS "-I/usr/local/opt/openssl/include"
 set -x PATH "/opt/homebrew/opt/openssl@1.1/bin:$PATH"
 
+# dotnet
+set -x PATH /usr/local/share/dotnet $PATH
+
 # pyenv
 set -x PYENV_ROOT "$HOME/.pyenv"
 set -x PATH $PYENV_ROOT/bin $PATH
 pyenv init - | source
+
+#go
+set -x PATH $HOME/go/bin $PATH
 
 # rust
 set -x PATH "$HOME/.cargo/bin" $PATH
