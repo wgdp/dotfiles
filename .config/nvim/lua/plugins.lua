@@ -53,6 +53,22 @@ require'packer'.startup(function()
             require('gitsigns').setup()
         end
     }
+    
+    -- デバッガ
+    use {
+        "rcarriga/nvim-dap-ui",
+        requires = {
+            "mfussenegger/nvim-dap",
+            "leoluz/nvim-dap-go",
+        },
+        config = function ()
+            vim.fn.sign_define('DapBreakpoint', {text='⛔', texthl='', linehl='', numhl=''})
+            vim.fn.sign_define('DapStopped', {text='👉', texthl='', linehl='', numhl=''})
+            require('dapui').setup()
+            require('dap-go').setup()
+            require('dap.ext.vscode').load_launchjs()
+        end
+    }
 end)
 
 
@@ -188,6 +204,24 @@ vim.diagnostic.config({
   update_in_insert = false,
   severity_sort = false,
 })
+
+-- 保存時にgo fmtを実行
+function OrgImports(wait_ms)
+  local params = vim.lsp.util.make_range_params()
+  params.context = {only = {"source.organizeImports"}}
+  local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, wait_ms)
+  for _, res in pairs(result or {}) do
+    for _, r in pairs(res.result or {}) do
+      if r.edit then
+        vim.lsp.util.apply_workspace_edit(r.edit)
+      else
+        vim.lsp.buf.execute_command(r.command)
+      end
+    end
+  end
+end
+
+vim.cmd("autocmd BufWritePre *.go lua OrgImports(1000)")
 
 -- ステータスライン(feline)
 require('feline').setup()

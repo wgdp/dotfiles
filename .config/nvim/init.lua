@@ -8,6 +8,8 @@ require('modules/treesitter')
 require('modules/telescope')
 require('modules/blamer')
 
+require('dap-go').setup()
+
 -- カラースキーム
 vim.cmd("colorscheme nightfox")
 
