@@ -5,4 +5,5 @@ brew install neovim \
     lazygit \
     python3 \
     pyenv \
-    gh
+    gh \
+    go \
