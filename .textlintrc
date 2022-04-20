@@ -2,15 +2,15 @@
   "filters": {},
   "rules": {
     "preset-ja-technical-writing": {
-      "ja-no-weak-phrase": false,
-      "ja-no-mixed-period": false,
-      "no-exclamation-question-mark": false
+      "ja-no-weak-phrase": true,
+      "ja-no-mixed-period": true,
+      "no-exclamation-question-mark": true
     },
     "preset-jtf-style": true,
     "prh": {
       "rulePaths": [
-        "node_modules/prh/prh-rules/media/WEB+DB_PRESS.yml",
-        "node_modules/prh/prh-rules/media/techbooster.yml"
+        "/opt/homebrew/lib/node_modules/prh/prh-rules/media/WEB+DB_PRESS.yml",
+        "/opt/homebrew/lib/node_modules/prh/prh-rules/media/techbooster.yml"
       ]
     }
   }
