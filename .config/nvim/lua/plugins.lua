@@ -62,8 +62,8 @@ require'packer'.startup(function()
             "leoluz/nvim-dap-go",
         },
         config = function ()
-            vim.fn.sign_define('DapBreakpoint', {text='⛔', texthl='', linehl='', numhl=''})
-            vim.fn.sign_define('DapStopped', {text='👉', texthl='', linehl='', numhl=''})
+            vim.fn.sign_define('DapBreakpoint', {text='', texthl='', linehl='', numhl=''})
+            vim.fn.sign_define('DapStopped', {text='🔴', texthl='', linehl='', numhl=''})
             require('dapui').setup()
             require('dap-go').setup()
             require('dap.ext.vscode').load_launchjs()
