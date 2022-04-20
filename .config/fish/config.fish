@@ -43,6 +43,9 @@ set -x PATH "/opt/homebrew/opt/openssl@1.1/bin:$PATH"
 # dotnet
 set -x PATH /usr/local/share/dotnet $PATH
 
+# yarn
+set -x PATH $HOME/.yarn/bin $PATH
+
 # pyenv
 set -x PYENV_ROOT "$HOME/.pyenv"
 set -x PATH $PYENV_ROOT/bin $PATH
