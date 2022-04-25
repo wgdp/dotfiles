@@ -7,6 +7,7 @@ require'plugins'
 require('modules/treesitter')
 require('modules/telescope')
 require('modules/blamer')
+require('modules/lualine')
 
 require('dap-go').setup()
 
@@ -30,6 +31,8 @@ vim.wo.spell = true
 vim.bo.spelllang = 'en,cjk'
 -- 折り返さない
 vim.o.wrap = false
+-- フォント
+vim.opt.guifont = { "HackGen35Nerd Console", "h14" }
 
 -- ステータスバー
 -- ファイル名表示
