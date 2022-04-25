@@ -17,7 +17,10 @@ require'packer'.startup(function()
     -- ファイラ
     use 'lambdalisue/fern.vim'
     -- ステータスラインカスタマイズ
-    use 'feline-nvim/feline.nvim'
+    use {
+      'nvim-lualine/lualine.nvim',
+      requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+    }
     -- カッコ補完等
     use 'cohama/lexima.vim'
     -- vim上からコマンド実行できるやつ
@@ -134,6 +137,7 @@ local language_settings = {
 
 -- lsp installer
 -- nvim-lsp-installer経由でインストールする場合は、lspconfigではなこちらにlspの設定書くとcmdとかを自動設定してくれるのでこっちに書く
+local pid = vim.fn.getpid()
 local enhance_server_opts = {
     ["sumneko_lua"] = function(opts)    -- luaのlsp。vimとuseの警告がうるさいので除外している
         opts.settings = {
@@ -152,6 +156,15 @@ local enhance_server_opts = {
                 languages = language_settings
             }
         }
+    end,
+    ["omnisharp"] = function(opts)
+        opts.cmd = {
+            "/Users/shiraga-t/.local/share/nvim/lsp_servers/omnisharp/omnisharp/run",
+            "--languageserver",
+            "--hostPID",
+            tostring(pid)
+	}
+        opts.root_dir = require("lspconfig").util.root_pattern("*.csproj","*.sln")
     end
 }
 
@@ -198,12 +211,23 @@ cmp.setup({
 
 -- lspのメッセージ表示設定
 vim.diagnostic.config({
-  virtual_text = true,  -- 右側にそのまま出てくるやつ。割とうるさいのでうるさすぎるようならfalseにする。
+  virtual_text = false,  -- 右側にそのまま出てくるやつ。割とうるさいのでうるさすぎるようならfalseにする。
   signs = true,
   underline = true,
   update_in_insert = false,
   severity_sort = false,
 })
+
+-- エラー時のアイコン
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
+-- エラーメッセージをホバーウィンドウに表示
+vim.o.updatetime = 250
+vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
 
 -- 保存時にgo fmtを実行
 function OrgImports(wait_ms)
@@ -223,5 +247,3 @@ end
 
 vim.cmd("autocmd BufWritePre *.go lua OrgImports(1000)")
 
--- ステータスライン(feline)
-require('feline').setup()
