@@ -1,6 +1,9 @@
 shell:
   program: /opt/homebrew/bin/fish
-# args:
+  args:
+    - -l
+    - -c
+    - "zellij attach --index 0 --create"
 # テーマ
 schemes:
   # Tokyo Night theme, based on both:
