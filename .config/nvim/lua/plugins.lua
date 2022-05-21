@@ -56,6 +56,9 @@ require'packer'.startup(function()
             require('gitsigns').setup()
         end
     }
+
+    -- コメントアウト
+    use "tyru/caw.vim"
     
     -- デバッガ
     use {
