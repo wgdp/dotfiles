@@ -2,14 +2,7 @@
 -- felineにいる
 vim.o.termguicolors = true
 
-require'plugins'
-
-require('modules/treesitter')
-require('modules/telescope')
-require('modules/blamer')
-require('modules/lualine')
-
-require('dap-go').setup()
+require('plugins')
 
 -- カラースキーム
 vim.cmd("colorscheme nightfox")
