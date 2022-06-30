@@ -1,2 +1,2 @@
-./apt.sh
-./other.sh
+./debian/apt.sh
+./debian/other.sh
