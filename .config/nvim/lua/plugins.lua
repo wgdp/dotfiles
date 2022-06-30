@@ -42,8 +42,6 @@ require'packer'.startup(function()
     }
     -- テーマ
     use "EdenEast/nightfox.nvim"
-    -- wakatime
-    use "wakatime/vim-wakatime"
     -- webアイコン設定用
     use 'kyazdani42/nvim-web-devicons'
     -- git周りの表現改善
