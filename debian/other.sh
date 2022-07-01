@@ -3,7 +3,8 @@
 # neovim
 NEOVIM_VERSION="v0.7.2"
 
-git clone https://github.com/neovim/neovim /tmp
+cd /tmp
+git clone https://github.com/neovim/neovim
 cd /tmp/neovim
 git checkout $NEOVIM_VERSION
 
