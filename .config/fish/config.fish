@@ -20,6 +20,7 @@ alias fc='nvim ~/.config/fish/config.fish'
 alias lg=lazygit
 alias v=nvim
 alias g=git
+alias rm='rm -i' # rm確認用
 
 # exa
 if command -sq exa
