@@ -18,6 +18,9 @@ fi
 # Install Rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
+# cargoとかのパスを反映させるため
+source ~/.bashrc
+
 # Install starship
 sh -c "$(curl -fsSL https://starship.rs/install.sh)"
 
