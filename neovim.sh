@@ -1,6 +1,7 @@
 # !/bin/bash
 
 nvim +PackerInstall +PackerCompile +qall
+nivm +TSUpdate +qall
 nvim +LspInstall gopls efm marksman omnisharp pyright rust_analyzer sumneko_lua +qall
 nvim +TSInstall \
     c \
