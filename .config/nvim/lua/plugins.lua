@@ -15,7 +15,7 @@ require'packer'.startup(function()
     -- Gitのコミット履歴を行ごとに表示できるやつ
     use 'airblade/vim-gitgutter'
     -- ファイラ
-    use 'lambdalisue/fern.vim'
+    -- use 'lambdalisue/fern.vim'
     -- ステータスラインカスタマイズ
     use {
       'nvim-lualine/lualine.nvim',
@@ -83,6 +83,8 @@ require'packer'.startup(function()
         require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
       end
     }
+    -- goimports 自動でやってくれるやつ
+    use "mattn/vim-goimports"
 end)
 
 -- 自動でpacker compileしてくれるやつ
@@ -95,5 +97,6 @@ require('modules/treesitter')
 require('modules/telescope')
 require('modules/blamer')
 require('modules/lualine')
+require('modules/vim-goimports')
 require('dap-go').setup()
 
