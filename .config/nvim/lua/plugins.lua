@@ -27,7 +27,8 @@ require'packer'.startup(function()
     use 'thinca/vim-quickrun'
     -- nvim-lsp
     use "neovim/nvim-lspconfig"
-    use "williamboman/nvim-lsp-installer"
+    use "williamboman/mason.nvim"
+    use "williamboman/mason-lspconfig.nvim"
     -- スニペット
     use "hrsh7th/vim-vsnip"
     -- 補完

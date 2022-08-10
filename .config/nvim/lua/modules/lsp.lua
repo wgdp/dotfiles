@@ -87,21 +87,23 @@ local enhance_server_opts = {
     end
 }
 
--- nvim-lsp-installerのセットアップ
-local lsp_installer = require("nvim-lsp-installer")
-lsp_installer.on_server_ready(function(server)
+-- masonのセットアップ
+require("mason").setup()
+local nvim_lsp = require("lspconfig")
+local mason_lspconfig = require("mason-lspconfig")
+mason_lspconfig.setup_handlers({ function(server_name)
     local opts = {}
     -- キーコンフィグとか前で定義したやつを入れる
     opts.on_attach = on_attach
 
-    if enhance_server_opts[server.name] then
-        enhance_server_opts[server.name](opts)
+    if enhance_server_opts[server_name.name] then
+        enhance_server_opts[server_name.name](opts)
     end
     opts.capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-    server:setup(opts)
+    nvim_lsp[server_name].setup(opts)
     vim.cmd [[ do User LspAttachBuffers ]]
-end)
+end })
 
 vim.opt.completeopt = "menu,menuone,noselect"
 
