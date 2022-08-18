@@ -24,17 +24,29 @@ require'packer'.startup(function()
     -- カッコ補完等
     use 'cohama/lexima.vim'
     -- vim上からコマンド実行できるやつ
-    use 'thinca/vim-quickrun'
+    -- use 'thinca/vim-quickrun'
     -- nvim-lsp
     use "neovim/nvim-lspconfig"
     use "williamboman/mason.nvim"
     use "williamboman/mason-lspconfig.nvim"
+    -- lspの表示を立地にするやつ
+    use({
+    "glepnir/lspsaga.nvim",
+    branch = "main",
+    config = function()
+        local saga = require("lspsaga")
+
+        -- saga.init_lsp_saga({
+        --     -- your configuration
+        -- })
+    end,
+}) 
     -- スニペット
-    use "hrsh7th/vim-vsnip"
+    use "L3MON4D3/LuaSnip"
+    use "onsails/lspkind-nvim"
     -- 補完
     use "hrsh7th/nvim-cmp"
     use "hrsh7th/cmp-nvim-lsp"
-    use "hrsh7th/cmp-vsnip"
     use "hrsh7th/cmp-buffer"
     -- ファインダー
     use {
