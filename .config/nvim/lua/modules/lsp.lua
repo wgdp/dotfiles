@@ -89,20 +89,21 @@ local enhance_server_opts = {
 
 -- masonのセットアップ
 require("mason").setup()
-local nvim_lsp = require("lspconfig")
 local mason_lspconfig = require("mason-lspconfig")
 mason_lspconfig.setup_handlers({ function(server_name)
     local opts = {}
     -- キーコンフィグとか前で定義したやつを入れる
     opts.on_attach = on_attach
 
+    opts.ensure_installed = { "sumneko_lua", "rust_analyzer", "gopls" }
+
     if enhance_server_opts[server_name.name] then
         enhance_server_opts[server_name.name](opts)
     end
     opts.capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-    nvim_lsp[server_name].setup(opts)
-    vim.cmd [[ do User LspAttachBuffers ]]
+   require("lspconfig")[server_name].setup(opts)
+    -- vim.cmd [[ do User LspAttachBuffers ]]
 end })
 
 vim.opt.completeopt = "menu,menuone,noselect"
