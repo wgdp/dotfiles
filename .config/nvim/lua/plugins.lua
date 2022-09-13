@@ -76,13 +76,11 @@ require'packer'.startup(function()
         "rcarriga/nvim-dap-ui",
         requires = {
             "mfussenegger/nvim-dap",
-            "leoluz/nvim-dap-go",
         },
         config = function ()
             vim.fn.sign_define('DapBreakpoint', {text='', texthl='', linehl='', numhl=''})
             vim.fn.sign_define('DapStopped', {text='🔴', texthl='', linehl='', numhl=''})
             require('dapui').setup()
-            require('dap-go').setup()
             require('dap.ext.vscode').load_launchjs()
         end
     }
@@ -111,5 +109,4 @@ require('modules/telescope')
 require('modules/blamer')
 require('modules/lualine')
 require('modules/vim-goimports')
-require('dap-go').setup()
-
+require('modules/dap')
