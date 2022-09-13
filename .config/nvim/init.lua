@@ -9,8 +9,6 @@ vim.cmd("colorscheme nightfox")
 
 -- jjでNormalモード
 vim.api.nvim_set_keymap('i', 'jj', '<ESC>', { noremap = true, silent = true })
--- nvim-dapデバッガ起動
-vim.api.nvim_set_keymap("n", "<leader>d", ":lua require'dap'.continue()<CR>", { silent = true})
 -- 行番号表示
 vim.wo.number = true
 -- クリップボードにコピー
