@@ -100,7 +100,7 @@ mason_lspconfig.setup_handlers({ function(server_name)
     if enhance_server_opts[server_name.name] then
         enhance_server_opts[server_name.name](opts)
     end
-    opts.capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+    opts.capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
    require("lspconfig")[server_name].setup(opts)
     -- vim.cmd [[ do User LspAttachBuffers ]]

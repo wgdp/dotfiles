@@ -1,36 +1,42 @@
--- 多分packerがインストールされてなかったらインストールするやつ
-local install_path = vim.fn.stdpath("data").."/site/pack/packer/start/packer.nvim"
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  packer_bootstrap = vim.fn.system({"git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path})
+-- lazy.nvim初期インストール用
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
+vim.opt.rtp:prepend(lazypath)
 
--- プラグインを追加する際はこの中に書く
-require'packer'.startup(function()
-    -- プラグイン管理ツール
-    use {'wbthomason/packer.nvim', opt = true}
+vim.g.mapleader = " "
+
+require("lazy").setup({
     -- ハイライトなどの強化
-    use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+    {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'},
     -- Git周り
-    use 'APZelos/blamer.nvim'
+    'APZelos/blamer.nvim', 
     -- Gitのコミット履歴を行ごとに表示できるやつ
-    use 'airblade/vim-gitgutter'
-    -- ファイラ
-    -- use 'lambdalisue/fern.vim'
+    'airblade/vim-gitgutter', 
+    -- use 'lambdalisue/fern.vim' -- ファイラ
     -- ステータスラインカスタマイズ
-    use {
+    {
       'nvim-lualine/lualine.nvim',
-      requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-    }
+      requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+    },
     -- カッコ補完等
-    use 'cohama/lexima.vim'
+    'cohama/lexima.vim',
     -- vim上からコマンド実行できるやつ
     -- use 'thinca/vim-quickrun'
     -- nvim-lsp
-    use "neovim/nvim-lspconfig"
-    use "williamboman/mason.nvim"
-    use "williamboman/mason-lspconfig.nvim"
+    "neovim/nvim-lspconfig",
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
     -- lspの表示を立地にするやつ
-    use({
+    {
     "glepnir/lspsaga.nvim",
     branch = "main",
     config = function()
@@ -40,25 +46,23 @@ require'packer'.startup(function()
         --     -- your configuration
         -- })
     end,
-}) 
+    },
     -- スニペット
-    use "L3MON4D3/LuaSnip"
-    use "onsails/lspkind-nvim"
+    "L3MON4D3/LuaSnip",
+    "onsails/lspkind-nvim",
     -- 補完
-    use "hrsh7th/nvim-cmp"
-    use "hrsh7th/cmp-nvim-lsp"
-    use "hrsh7th/cmp-buffer"
+    "hrsh7th/nvim-cmp",
+    "hrsh7th/cmp-nvim-lsp",
+    "hrsh7th/cmp-buffer",
     -- ファインダー
-    use {
-      'nvim-telescope/telescope.nvim',
-      requires = { {'nvim-lua/plenary.nvim'} }
-    }
+    'nvim-lua/plenary.nvim', -- require
+    'nvim-telescope/telescope.nvim',
     -- テーマ
-    use "EdenEast/nightfox.nvim"
+    "EdenEast/nightfox.nvim",
     -- webアイコン設定用
-    use 'kyazdani42/nvim-web-devicons'
+    'kyazdani42/nvim-web-devicons',
     -- git周りの表現改善
-    use {
+    {
         'lewis6991/gitsigns.nvim',
         requires = {
             'nvim-lua/plenary.nvim'
@@ -66,40 +70,37 @@ require'packer'.startup(function()
         config = function()
             require('gitsigns').setup()
         end
-    }
+    },
 
     -- コメントアウト
-    use "tyru/caw.vim"
-    
+    "tyru/caw.vim",
     -- デバッガ
-    use {
+    "mfussenegger/nvim-dap", -- require
+    {
         "rcarriga/nvim-dap-ui",
-        requires = {
-            "mfussenegger/nvim-dap",
-        },
         config = function ()
             vim.fn.sign_define('DapBreakpoint', {text='', texthl='', linehl='', numhl=''})
             vim.fn.sign_define('DapStopped', {text='🔴', texthl='', linehl='', numhl=''})
             require('dapui').setup()
             require('dap.ext.vscode').load_launchjs()
         end
-    }
-
+    },
     -- ジャンプ
-    use {
+    {
       'phaazon/hop.nvim',
       branch = 'v1', -- optional but strongly recommended
       config = function()
         -- you can configure Hop the way you like here; see :h hop-config
         require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
       end
-    }
+    },
     -- goimports 自動でやってくれるやつ
-    use "mattn/vim-goimports"
-end)
+    "mattn/vim-goimports",
+    -- d2
+    "terrastruct/d2-vim",
+})
 
--- 自動でpacker compileしてくれるやつ
-vim.cmd([[autocmd BufWritePost init.lua source <afile> | PackerCompile]])
+-- プラグインを追加する際はこの中に書く
 
 require('modules/lsp')
 require('modules/cmp')
