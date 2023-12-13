@@ -21,7 +21,7 @@ alias lg=lazygit
 alias v=nvim
 alias g=git
 # alias rm='rm -i' # rm確認用
-alias rm='trush-put'
+alias rm='trash-put'
 
 # exa
 if command -sq exa
