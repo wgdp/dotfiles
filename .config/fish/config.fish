@@ -61,5 +61,9 @@ set -x PATH "$HOME/.nimble/bin" $PATH
 # GitHub CLI補完用
 eval (gh completion -s fish| source)
 
+# https://zenn.dev/kyoh86/articles/e27a93d78767a7
+# ~/.config/astronvimを指定する
+set -x NVIM_APPNAME astronvim
+
 # start starship!!
 starship init fish | source
